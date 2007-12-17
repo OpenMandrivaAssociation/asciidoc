@@ -7,7 +7,6 @@ Group: Publishing
 URL: http://www.methods.co.nz/asciidoc/
 
 Source: http://www.methods.co.nz/asciidoc/asciidoc-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python-devel
