@@ -1,6 +1,6 @@
 Summary: Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 Name: asciidoc
-Version: 8.2.2
+Version: 8.2.5
 Release: %mkrel 1
 License: GPL
 Group: Publishing
