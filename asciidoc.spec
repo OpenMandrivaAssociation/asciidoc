@@ -1,19 +1,24 @@
-Summary: Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
-Name: asciidoc
-Version: 8.2.7
-Release: %mkrel 3
-License: GPL
-Group: Publishing
-URL: http://www.methods.co.nz/asciidoc/
+Name:       asciidoc
+Version:    8.2.7
+Release:    %mkrel 3
 
-Source: http://www.methods.co.nz/asciidoc/asciidoc-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Summary:    Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
+License:    GPL
+Group:      Publishing
+Url:        http://www.methods.co.nz/asciidoc/
+Source0:    http://www.methods.co.nz/asciidoc/asciidoc-%{version}.tar.bz2
+
+BuildRequires: python-devel
 
 BuildArch: noarch
-BuildRequires: python-devel
+BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
+
 Requires: python
 # For a2x
-Suggests: xsltproc dblatex w3m fop
+Suggests:   dblatex
+Suggests:   fop
+Suggests:   w3m
+Suggests:   xsltproc
 
 %description
 AsciiDoc is a text document format for writing short documents, articles,
