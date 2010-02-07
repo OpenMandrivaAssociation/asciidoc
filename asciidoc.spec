@@ -6,7 +6,7 @@ Summary:    Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pag
 License:    GPL
 Group:      Publishing
 Url:        http://www.methods.co.nz/asciidoc/
-Source0:    http://www.methods.co.nz/asciidoc/asciidoc-%{version}.tar.bz2
+Source0:    http://downloads.sourceforge.net/project/asciidoc/asciidoc/%{version}/asciidoc-%{version}.tar.gz
 
 BuildRequires: python-devel
 
