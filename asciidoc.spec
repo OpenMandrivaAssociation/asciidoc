@@ -8,7 +8,7 @@ Group:      Publishing
 Url:        http://www.methods.co.nz/asciidoc/
 Source0:    http://downloads.sourceforge.net/project/asciidoc/asciidoc/%{version}/asciidoc-%{version}.tar.gz
 Patch0:     asciidoc-8.5.3-fix_makefile.patch
-BuildRequires: python-devel
+BuildRequires: python-devel dos2unix
 
 BuildArch: noarch
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
@@ -26,12 +26,18 @@ books and UNIX man pages.
 
 %prep
 %setup -q
-#sed -i -e "s|CONFDIR=.*|CONFDIR=%{buildroot}%{_sysconfdir}/asciidoc|" \
-#-e "s|BINDIR=.*|BINDIR=%{buildroot}%{_bindir}|" \
-#-e "s|MANDIR=.*|MANDIR=%{buildroot}%{_mandir}|" \
-#-e "s|VIM_CONFDIR=.*|VIM_CONFDIR=%{buildroot}%{_sysconfdir}/vim|" \
-#install-sh
 %patch0 -p0
+
+for i in CHANGELOG README; 
+do
+    iconv -f ISO-8859-1 -t UTF-8 -o $i.UTF-8 $i
+    mv  $i.UTF-8 $i
+done
+for i in  doc/book-multi.txt doc/article.txt COPYRIGHT doc/faq.txt filters/code/code-filter-readme.txt \
+doc/asciidoc.1.txt filters/code/code-filter-test.txt doc/book.txt doc/latex-backend.txt;
+do  
+    dos2unix < $i > $i.fixed ; mv -f $i.fixed $i ;
+done
 
 %build
 %configure
@@ -39,7 +45,6 @@ books and UNIX man pages.
 
 %install
 %{__rm} -rf %{buildroot}
-mkdir -p %{buildroot}%{_bindir}
 %makeinstall_std
 
 %clean
