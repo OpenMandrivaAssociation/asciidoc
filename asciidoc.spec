@@ -46,6 +46,7 @@ done
 
 %build
 %configure2_5x
+sed -ri 's/a2x.py -f/a2x.py -v -f/g' Makefile
 %make
 
 %install
