@@ -46,7 +46,7 @@ done
 
 %build
 %configure2_5x
-make
+%make
 
 %install
 %{__rm} -rf %{buildroot}
