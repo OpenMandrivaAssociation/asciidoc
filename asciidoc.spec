@@ -9,6 +9,9 @@ Url:        http://www.methods.co.nz/asciidoc/
 Source0:    http://downloads.sourceforge.net/project/asciidoc/asciidoc/%{version}/asciidoc-%{version}.tar.gz
 Patch0:     asciidoc-8.5.3-fix_makefile.patch
 BuildRequires: python-devel dos2unix
+BuildRequires: docbook-dtd42-xml
+BuildRequires: docbook-dtd43-xml
+BuildRequires: docbook-dtd44-xml
 BuildRequires: docbook-dtd45-xml
 BuildRequires: xsltproc
 
