@@ -46,6 +46,7 @@ done
 
 %build
 %configure2_5x
+python a2x.py -v -f manpage doc/asciidoc.1.txt
 %make
 
 %install
