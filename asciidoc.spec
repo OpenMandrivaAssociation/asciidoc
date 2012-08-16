@@ -1,32 +1,29 @@
-Name:       asciidoc
-Version:    8.6.6
-Release:    2
-
-Summary:    Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
-License:    GPLv2+
-Group:      Publishing
-Url:        http://www.methods.co.nz/asciidoc/
-Source0:    http://downloads.sourceforge.net/project/asciidoc/asciidoc/%{version}/asciidoc-%{version}.tar.gz
-Patch0:     asciidoc-8.5.3-fix_makefile.patch
+Summary:	Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
+Name:		asciidoc
+Version:	8.6.8
+Release:	1
+License:	GPLv2+
+Group:		Publishing
+Url:		http://www.methods.co.nz/asciidoc/
+Source0:	http://downloads.sourceforge.net/project/asciidoc/asciidoc/%{version}/asciidoc-%{version}.tar.gz
+Patch0:		asciidoc-8.5.3-fix_makefile.patch
 #From Fedora
 Patch1:		asciidoc-8.6.6-datadir.patch
-BuildRequires: python-devel dos2unix
-BuildRequires: docbook-dtd42-xml
-BuildRequires: docbook-dtd43-xml
-BuildRequires: docbook-dtd44-xml
-BuildRequires: docbook-dtd45-xml
-BuildRequires: xsltproc
-
-BuildArch: noarch
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
-
-Requires: python
+BuildRequires:	python-devel
+BuildRequires:	dos2unix
+BuildRequires:	docbook-dtd42-xml
+BuildRequires:	docbook-dtd43-xml
+BuildRequires:	docbook-dtd44-xml
+BuildRequires:	docbook-dtd45-xml
+BuildRequires:	xsltproc
+BuildArch:	noarch
+Requires:	python
 # For a2x
-Suggests:   dblatex
-Suggests:   fop
-Suggests:   w3m
-Suggests:   xsltproc
-Conflicts: %{name} <= 8.6.5
+Suggests:	dblatex
+Suggests:	fop
+Suggests:	w3m
+Suggests:	xsltproc
+Conflicts:	%{name} <= 8.6.5
 
 %description
 AsciiDoc is a text document format for writing short documents, articles,
@@ -53,7 +50,6 @@ sed -ri 's/a2x.py -f/a2x.py -v -f/g' Makefile
 %make
 
 %install
-%{__rm} -rf %{buildroot}
 %makeinstall_std
 
 # real conf data goes to sysconfdir, rest to datadir; symlinks so asciidoc works
@@ -71,9 +67,6 @@ for file in %{buildroot}{%{_bindir},%{_datadir}/asciidoc/filters/*}/*.py ; do
     rm -f ${file}{c,o}
 done
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %files
 %doc BUGS CHANGELOG COPYRIGHT README
 %doc doc/*.txt filters/*/*.txt
@@ -85,5 +78,3 @@ done
 %{_bindir}/a2x
 %{_datadir}/asciidoc/
 %{python_sitelib}/asciidocapi.py*
-
-
