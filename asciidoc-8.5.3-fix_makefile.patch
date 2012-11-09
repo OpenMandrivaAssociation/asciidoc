@@ -1,0 +1,13 @@
+Index: Makefile.in
+===================================================================
+--- a/Makefile.in
++++ b/Makefile.in	2010-02-08 00:56:53.000000000 +0100
+@@ -129,7 +129,7 @@
+ 	done
+ 
+ install-vim:
+-	@for d in $(DESTDIR)/$(vimdir) /etc/vim; do \
++	@for d in $(DESTDIR)/$(vimdir); do \
+ 		if ! test -d $$d; then continue; fi ; \
+ 		echo "installing Vim files in $$d" ; \
+ 		$(INSTALL) -d $$d/syntax ; \
