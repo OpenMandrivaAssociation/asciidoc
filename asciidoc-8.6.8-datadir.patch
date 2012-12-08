@@ -1,7 +1,7 @@
-diff -Nur asciidoc-8.6.6/asciidoc.py asciidoc-8.6.6-new/asciidoc.py
---- asciidoc-8.6.6/asciidoc.py	2011-09-03 01:04:19.000000000 +0400
-+++ asciidoc-8.6.6-new/asciidoc.py	2011-11-02 22:02:37.359198461 +0400
-@@ -785,11 +785,14 @@
+diff -urN asciidoc-8.6.8/asciidoc.py asciidoc-8.6.8-patched/asciidoc.py
+--- asciidoc-8.6.8/asciidoc.py	2012-07-10 13:47:22.000000000 +1100
++++ asciidoc-8.6.8-patched/asciidoc.py	2012-10-20 11:48:29.671235614 +1100
+@@ -791,11 +791,14 @@
          if not found:
              if USER_DIR:
                  found = findfilter(filtername, USER_DIR, cmd)
@@ -17,7 +17,7 @@ diff -Nur asciidoc-8.6.6/asciidoc.py asciidoc-8.6.6-new/asciidoc.py
      else:
          if os.path.isfile(cmd):
              found = cmd
-@@ -5800,6 +5803,7 @@
+@@ -5865,6 +5868,7 @@
  USER_DIR = None             # ~/.asciidoc
  # Global configuration files directory (set by Makefile build target).
  CONF_DIR = '/etc/asciidoc'
@@ -25,9 +25,9 @@ diff -Nur asciidoc-8.6.6/asciidoc.py asciidoc-8.6.6-new/asciidoc.py
  HELP_FILE = 'help.conf'     # Default (English) help file.
  
  # Globals
-diff -Nur asciidoc-8.6.6/Makefile.in asciidoc-8.6.6-new/Makefile.in
---- asciidoc-8.6.6/Makefile.in	2011-11-02 22:04:15.000000000 +0400
-+++ asciidoc-8.6.6-new/Makefile.in	2011-11-02 21:45:39.703402427 +0400
+diff -urN asciidoc-8.6.8/Makefile.in asciidoc-8.6.8-patched/Makefile.in
+--- asciidoc-8.6.8/Makefile.in	2011-05-31 07:54:30.000000000 +1100
++++ asciidoc-8.6.8-patched/Makefile.in	2012-10-20 11:51:07.487233892 +1100
 @@ -23,6 +23,7 @@
  VPATH = @srcdir@
  
@@ -80,11 +80,20 @@ diff -Nur asciidoc-8.6.6/Makefile.in asciidoc-8.6.6-new/Makefile.in
 +	done
 +
  install-vim:
--	@for d in $(DESTDIR)/$(vimdir); do \
-+	@for d in $(DESTDIR)/$(vimdir) /etc/vim; do \
+-	@for d in $(DESTDIR)/$(vimdir) /etc/vim; do \
++	@for d in $(DESTDIR)/$(vimdir); do \
  		if ! test -d $$d; then continue; fi ; \
  		echo "installing Vim files in $$d" ; \
  		$(INSTALL) -d $$d/syntax ; \
+@@ -155,7 +164,7 @@
+ 	done
+ 
+ uninstall-vim:
+-	@for d in $(DESTDIR)/$(vimdir) /etc/vim; do \
++	@for d in $(DESTDIR)/$(vimdir); do \
+ 		if ! test -d $$d; then continue; fi ; \
+ 		echo "uninstalling Vim files in $$d" ; \
+ 		rm -f $$d/syntax/asciidoc.vim ; \
 @@ -163,7 +172,7 @@
  	done
  
