@@ -1,6 +1,6 @@
 Name:		asciidoc
 Version:	8.6.8
-Release:	2
+Release:	5
 
 Summary:	Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 License:	GPLv2+
@@ -23,6 +23,9 @@ Suggests:	dblatex
 Suggests:	fop
 Suggests:	w3m
 Suggests:	xsltproc
+%rename asciidoc-doc
+%rename asciidoc-latex
+%rename asciidoc-music
 
 %description
 AsciiDoc is a text document format for writing short documents, articles,
