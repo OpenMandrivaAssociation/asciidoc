@@ -1,23 +1,22 @@
-diff -urN asciidoc-8.6.8/asciidoc.py asciidoc-8.6.8-patched/asciidoc.py
---- asciidoc-8.6.8/asciidoc.py	2012-07-10 13:47:22.000000000 +1100
-+++ asciidoc-8.6.8-patched/asciidoc.py	2012-10-20 11:48:29.671235614 +1100
-@@ -791,11 +791,14 @@
+--- asciidoc-8.6.9/asciidoc.py.orig	2013-11-06 22:33:00.000000000 +0100
++++ asciidoc-8.6.9/asciidoc.py	2014-06-28 17:30:22.424069964 +0200
+@@ -791,11 +791,14 @@ def filter_lines(filter_cmd, lines, attr
          if not found:
              if USER_DIR:
                  found = findfilter(filtername, USER_DIR, cmd)
 -            if not found:
 +        if not found:
-+	    found = findfilter(filtername, DATA_DIR, cmd)
-+	    if not found:
++            found = findfilter(filtername, DATA_DIR, cmd)
++            if not found:
                  if localapp():
                      found = findfilter(filtername, APP_DIR, cmd)
                  else:
                      found = findfilter(filtername, CONF_DIR, cmd)
-+                    
++
      else:
          if os.path.isfile(cmd):
              found = cmd
-@@ -5865,6 +5868,7 @@
+@@ -5866,6 +5869,7 @@ APP_DIR = None              # This file'
  USER_DIR = None             # ~/.asciidoc
  # Global configuration files directory (set by Makefile build target).
  CONF_DIR = '/etc/asciidoc'
@@ -25,10 +24,9 @@ diff -urN asciidoc-8.6.8/asciidoc.py asciidoc-8.6.8-patched/asciidoc.py
  HELP_FILE = 'help.conf'     # Default (English) help file.
  
  # Globals
-diff -urN asciidoc-8.6.8/Makefile.in asciidoc-8.6.8-patched/Makefile.in
---- asciidoc-8.6.8/Makefile.in	2011-05-31 07:54:30.000000000 +1100
-+++ asciidoc-8.6.8-patched/Makefile.in	2012-10-20 11:51:07.487233892 +1100
-@@ -23,6 +23,7 @@
+--- asciidoc-8.6.9/Makefile.in.orig	2012-09-28 01:35:02.000000000 +0200
++++ asciidoc-8.6.9/Makefile.in	2014-06-28 17:31:30.501218883 +0200
+@@ -23,6 +23,7 @@ srcdir = @srcdir@
  VPATH = @srcdir@
  
  ASCIIDOCCONF = $(sysconfdir)/asciidoc
@@ -36,7 +34,7 @@ diff -urN asciidoc-8.6.8/Makefile.in asciidoc-8.6.8-patched/Makefile.in
  
  prog = asciidoc.py a2x.py
  progdir = $(bindir)
-@@ -35,25 +36,26 @@
+@@ -33,25 +34,26 @@ manpdir = $(mandir)/man1
  conf = $(wildcard *.conf)
  confdir = $(ASCIIDOCCONF)
  
@@ -68,10 +66,11 @@ diff -urN asciidoc-8.6.8/Makefile.in asciidoc-8.6.8-patched/Makefile.in
  
  latexfilter = filters/latex/latex2png.py
  latexfilterdir = $(filtersdir)/latex
-@@ -144,8 +146,15 @@
+@@ -142,7 +144,14 @@ fixconfpath:
  		chmod +x $$f; \
  	done
  
+-build: fixconfpath $(manp)
 +fixdatapath:
 +	@for f in $(prog); do \
 +		echo "Fixing DATA_DIR in $$f"; \
@@ -79,27 +78,7 @@ diff -urN asciidoc-8.6.8/Makefile.in asciidoc-8.6.8-patched/Makefile.in
 +		mv $$f.out $$f; \
 +	done
 +
- install-vim:
--	@for d in $(DESTDIR)/$(vimdir) /etc/vim; do \
-+	@for d in $(DESTDIR)/$(vimdir); do \
- 		if ! test -d $$d; then continue; fi ; \
- 		echo "installing Vim files in $$d" ; \
- 		$(INSTALL) -d $$d/syntax ; \
-@@ -155,7 +164,7 @@
- 	done
- 
- uninstall-vim:
--	@for d in $(DESTDIR)/$(vimdir) /etc/vim; do \
-+	@for d in $(DESTDIR)/$(vimdir); do \
- 		if ! test -d $$d; then continue; fi ; \
- 		echo "uninstalling Vim files in $$d" ; \
- 		rm -f $$d/syntax/asciidoc.vim ; \
-@@ -163,7 +172,7 @@
- 	done
- 
- 
--build: fixconfpath $(manp)
 +build: fixconfpath $(manp) fixdatapath
  
+ install: all $(PROGTARGETS) $(DATATARGETS) progsymlink
  
- install: all $(PROGTARGETS) $(DATATARGETS) progsymlink install-vim
