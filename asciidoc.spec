@@ -15,6 +15,7 @@ BuildRequires:	docbook-dtd43-xml
 BuildRequires:	docbook-dtd44-xml
 BuildRequires:	docbook-dtd45-xml
 BuildRequires:	xsltproc
+BuildRequires:	pcre
 Requires:	python2
 
 BuildArch:	noarch
