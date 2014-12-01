@@ -1,22 +1,28 @@
 Name:		asciidoc
 Version:	8.6.9
-Release:	3
+Release:	4
 
 Summary:	Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 License:	GPLv2+
 Group:		Publishing
 Url:		http://www.methods.co.nz/asciidoc/
-Source0:	http://downloads.sourceforge.net/project/asciidoc/asciidoc/%{version}/asciidoc-%{version}.tar.xz
+Source0:	http://downloads.sourceforge.net/project/asciidoc/asciidoc/%{version}/asciidoc-%{version}.tar.gz
 Patch0:		asciidoc-8.6.8-datadir.patch
-BuildRequires:	python-devel
+BuildRequires:	python2-devel
 BuildRequires:	dos2unix
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-dtd43-xml
 BuildRequires:	docbook-dtd44-xml
 BuildRequires:	docbook-dtd45-xml
 BuildRequires:	xsltproc
+BuildRequires:	pcre
+Requires:	python2
 
 BuildArch:	noarch
+
+%rename asciidoc-doc
+%rename asciidoc-latex
+%rename asciidoc-music
 
 
 %description
@@ -38,7 +44,9 @@ file formats.
 
 %prep
 %setup -q
-%patch0 -p1
+%apply_patches
+sed -i -e 's,env python,env python2,g' *.py
+sed -i -e 's,python,python2,g' Makefile.in
 
 for i in CHANGELOG README;
 do
@@ -67,7 +75,7 @@ for d in dblatex docbook-xsl images javascripts stylesheets; do
 done
 
 # Python API
-install -Dpm 644 asciidocapi.py %{buildroot}%{py_puresitedir}/asciidocapi.py
+install -Dpm 644 asciidocapi.py %{buildroot}%{py2_sitelib}/asciidocapi.py
 
 # Make it easier to %exclude these with both rpm < and >= 4.7
 for file in %{buildroot}{%{_bindir},%{_datadir}/asciidoc/filters/*}/*.py ; do
@@ -82,7 +90,7 @@ done
 %{_bindir}/asciidoc.py
 %{_bindir}/asciidoc
 %{_datadir}/asciidoc/
-%{py_puresitedir}/asciidocapi.py*
+%{py2_sitelib}/asciidocapi.py*
 
 %files -n a2x
 %{_bindir}/a2x.py
