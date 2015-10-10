@@ -90,7 +90,6 @@ done
 %{_bindir}/asciidoc.py
 %{_bindir}/asciidoc
 %{_datadir}/asciidoc/
-%{py2_sitelib}/asciidocapi.py*
 
 %files -n a2x
 %{_bindir}/a2x.py
