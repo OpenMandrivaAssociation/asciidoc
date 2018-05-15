@@ -1,14 +1,13 @@
 Name:		asciidoc
-Version:	8.6.9
-Release:	7
-
+Version:	8.6.10
+Release:	1
 Summary:	Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 License:	GPLv2+
 Group:		Publishing
-Url:		http://www.methods.co.nz/asciidoc/
-Source0:	http://downloads.sourceforge.net/project/asciidoc/asciidoc/%{version}/asciidoc-%{version}.tar.gz
+Url:		http://asciidoc.org/
+Source0:	https://codeload.github.com/asciidoc/asciidoc/archive/asciidoc-%{version}.tar.gz
 Patch0:		asciidoc-8.6.8-datadir.patch
-BuildRequires:	python2-devel
+BuildRequires:	pkgconfig(python2)
 BuildRequires:	dos2unix
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-dtd43-xml
@@ -60,12 +59,12 @@ do
 done
 
 %build
-%configure2_5x
+%configure
 sed -ri 's/a2x.py -f/a2x.py -v -f/g' Makefile
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 # real conf data goes to sysconfdir, rest to datadir; symlinks so asciidoc works
 for d in dblatex docbook-xsl images javascripts stylesheets; do
