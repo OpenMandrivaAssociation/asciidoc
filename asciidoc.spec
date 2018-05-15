@@ -6,7 +6,7 @@ License:	GPLv2+
 Group:		Publishing
 Url:		http://asciidoc.org/
 Source0:	https://codeload.github.com/asciidoc/asciidoc/archive/asciidoc-%{version}.tar.gz
-Patch0:		asciidoc-8.6.8-datadir.patch
+#Patch0:		asciidoc-8.6.8-datadir.patch
 BuildRequires:	pkgconfig(python2)
 BuildRequires:	dos2unix
 BuildRequires:	docbook-dtd42-xml
@@ -32,6 +32,9 @@ books and UNIX man pages.
 Summary:	Converts Asciidoc text files to other formats (PDF, EPUB, DVI, etc.)
 Group:		Publishing
 Requires:	asciidoc
+Requires:	xmllint
+Requires:	docbook-style-xsl
+Requires:	xsltproc
 Suggests:	dblatex
 Suggests:	fop
 Suggests:	w3m
@@ -43,7 +46,7 @@ file formats.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 sed -i -e 's,env python,env python2,g' *.py
 sed -i -e 's,python,python2,g' Makefile.in
 
