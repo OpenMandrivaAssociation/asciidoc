@@ -13,6 +13,7 @@ BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-dtd43-xml
 BuildRequires:	docbook-dtd44-xml
 BuildRequires:	docbook-dtd45-xml
+BuildRequires:	docbook-style-xsl
 BuildRequires:	xsltproc
 BuildRequires:	pcre
 Requires:	python2
