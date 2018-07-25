@@ -1,6 +1,6 @@
 Name:		asciidoc
 Version:	8.6.10
-Release:	2
+Release:	3
 Summary:	Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 License:	GPLv2+
 Group:		Publishing
@@ -33,6 +33,8 @@ Summary:	Converts Asciidoc text files to other formats (PDF, EPUB, DVI, etc.)
 Group:		Publishing
 Requires:	asciidoc
 Requires:	xmllint
+Requires:	xmlto
+Requires:	libxml2-utils
 Requires:	docbook-style-xsl
 Requires:	xsltproc
 Suggests:	dblatex
