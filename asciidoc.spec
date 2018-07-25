@@ -49,8 +49,8 @@ file formats.
 %prep
 %setup -q
 %autopatch -p1
-sed -i -e 's,env python,env python2,g' *.py
-sed -i -e 's,python,python2,g' Makefile.in
+sed -i -e 's,env python,%{__python2},g' *.py
+sed -i -e 's,python,%{__python2},g' Makefile.in
 
 for i in  doc/book-multi.txt doc/article.txt COPYRIGHT doc/faq.txt filters/code/code-filter-readme.txt \
 doc/asciidoc.1.txt filters/code/code-filter-test.txt doc/book.txt doc/latex-backend.txt;
