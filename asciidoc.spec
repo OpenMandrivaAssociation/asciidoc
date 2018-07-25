@@ -52,7 +52,7 @@ file formats.
 sed -i -e 's,env python,env python2,g' *.py
 sed -i -e 's,python,python2,g' Makefile.in
 
-for i in CHANGELOG README;
+for i in README;
 do
     iconv -f ISO-8859-1 -t UTF-8 -o $i.UTF-8 $i
     mv  $i.UTF-8 $i
@@ -87,7 +87,7 @@ for file in %{buildroot}{%{_bindir},%{_datadir}/asciidoc/filters/*}/*.py ; do
 done
 
 %files
-%doc BUGS CHANGELOG COPYRIGHT README
+%doc BUGS COPYRIGHT README
 %doc doc/*.txt filters/*/*.txt
 %doc %{_mandir}/man1/ascii*
 %config(noreplace) %{_sysconfdir}/asciidoc/
