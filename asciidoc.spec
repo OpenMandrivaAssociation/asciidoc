@@ -59,6 +59,7 @@ do
 done
 
 %build
+autoreconf -fiv
 %configure
 sed -ri 's/a2x.py -f/a2x.py -v -f/g' Makefile
 %make_build
