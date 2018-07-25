@@ -85,7 +85,7 @@ for file in %{buildroot}{%{_bindir},%{_datadir}/asciidoc/filters/*}/*.py ; do
 done
 
 %files
-%doc BUGS COPYRIGHT README
+%doc COPYRIGHT
 %doc doc/*.txt filters/*/*.txt
 %doc %{_mandir}/man1/ascii*
 %config(noreplace) %{_sysconfdir}/asciidoc/
