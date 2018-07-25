@@ -49,7 +49,6 @@ file formats.
 %prep
 %setup -q
 %autopatch -p1
-sed -i -e 's,env python,%{__python2},g' *.py
 sed -i -e 's,python,%{__python2},g' Makefile.in
 
 for i in  doc/book-multi.txt doc/article.txt COPYRIGHT doc/faq.txt filters/code/code-filter-readme.txt \
@@ -59,6 +58,7 @@ do
 done
 
 %build
+export PYTHON=%{__python2}
 autoreconf -fiv
 %configure
 sed -ri 's/a2x.py -f/a2x.py -v -f/g' Makefile
