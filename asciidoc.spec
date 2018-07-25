@@ -59,6 +59,7 @@ do
 done
 
 %build
+%global %__python /usr/bin/python2
 export PYTHON=%{__python2}
 autoreconf -fiv
 %configure
