@@ -33,7 +33,6 @@ books and UNIX man pages.
 Summary:	Converts Asciidoc text files to other formats (PDF, EPUB, DVI, etc.)
 Group:		Publishing
 Requires:	asciidoc
-Requires:	xmllint
 Requires:	xmlto
 Requires:	libxml2-utils
 Requires:	docbook-style-xsl
