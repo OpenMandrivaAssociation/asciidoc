@@ -1,13 +1,13 @@
 Name:		asciidoc
-Version:	8.6.10
-Release:	4
+Version:	8.6.11
+Release:	0.20190803.1
 Summary:	Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 License:	GPLv2+
 Group:		Publishing
 Url:		http://asciidoc.org/
-Source0:	https://codeload.github.com/asciidoc/asciidoc/archive/asciidoc-%{version}.tar.gz
+Source0:	https://github.com/asciidoc/asciidoc-py3/archive/master.tar.gz
 #Patch0:		asciidoc-8.6.8-datadir.patch
-BuildRequires:	pkgconfig(python2)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	dos2unix
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-dtd43-xml
@@ -16,7 +16,7 @@ BuildRequires:	docbook-dtd45-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	xsltproc
 BuildRequires:	pcre
-Requires:	python2
+Requires:	python
 
 BuildArch:	noarch
 
@@ -47,9 +47,7 @@ A toolchain manager for AsciiDoc that converts Asciidoc text files to other
 file formats.
 
 %prep
-%setup -q
-%autopatch -p1
-sed -i -e 's,python,%{__python2},g' Makefile.in
+%autosetup -p1 -n asciidoc-py3-master
 
 for i in  doc/book-multi.txt doc/article.txt COPYRIGHT doc/faq.txt filters/code/code-filter-readme.txt \
 doc/asciidoc.1.txt filters/code/code-filter-test.txt doc/book.txt doc/latex-backend.txt;
@@ -58,8 +56,6 @@ do
 done
 
 %build
-%global __python /usr/bin/python2
-export PYTHON=%{__python2}
 autoreconf -fiv
 %configure
 sed -ri 's/a2x.py -f/a2x.py -v -f/g' Makefile
@@ -76,7 +72,7 @@ for d in dblatex docbook-xsl images javascripts stylesheets; do
 done
 
 # Python API
-install -Dpm 644 asciidocapi.py %{buildroot}%{py2_sitelib}/asciidocapi.py
+install -Dpm 644 asciidocapi.py %{buildroot}%{py3_sitelib}/asciidocapi.py
 
 # Make it easier to %exclude these with both rpm < and >= 4.7
 for file in %{buildroot}{%{_bindir},%{_datadir}/asciidoc/filters/*}/*.py ; do
