@@ -1,11 +1,11 @@
 Name:		asciidoc
-Version:	8.6.11
-Release:	0.20190803.2
+Version:	9.0.4
+Release:	1
 Summary:	Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 License:	GPLv2+
 Group:		Publishing
 Url:		http://asciidoc.org/
-Source0:	https://github.com/asciidoc/asciidoc-py3/archive/master.tar.gz
+Source0:	https://github.com/asciidoc/asciidoc-py3/archive/%{version}.tar.gz
 #Patch0:		asciidoc-8.6.8-datadir.patch
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	dos2unix
@@ -47,7 +47,7 @@ A toolchain manager for AsciiDoc that converts Asciidoc text files to other
 file formats.
 
 %prep
-%autosetup -p1 -n asciidoc-py3-master
+%setup -qn %{name}-py3-%{version}
 
 for i in  doc/book-multi.txt doc/article.txt COPYRIGHT doc/faq.txt filters/code/code-filter-readme.txt \
 doc/asciidoc.1.txt filters/code/code-filter-test.txt doc/book.txt doc/latex-backend.txt;
@@ -87,6 +87,7 @@ done
 %{_bindir}/asciidoc.py
 %{_bindir}/asciidoc
 %{_datadir}/asciidoc/
+%{_mandir}/man1/testasciidoc.1.*
 
 %files -n a2x
 %{_bindir}/a2x.py
