@@ -1,5 +1,5 @@
 Name:		asciidoc
-Version:	9.0.4
+Version:	9.1.0
 Release:	1
 Summary:	Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 License:	GPLv2+
@@ -47,7 +47,7 @@ A toolchain manager for AsciiDoc that converts Asciidoc text files to other
 file formats.
 
 %prep
-%setup -qn %{name}-py3-%{version}
+%setup -qn %{name}-py-%{version}
 
 for i in  doc/book-multi.txt doc/article.txt COPYRIGHT doc/faq.txt filters/code/code-filter-readme.txt \
 doc/asciidoc.1.txt filters/code/code-filter-test.txt doc/book.txt doc/latex-backend.txt;
