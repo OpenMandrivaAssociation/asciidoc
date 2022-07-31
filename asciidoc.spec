@@ -49,8 +49,8 @@ file formats.
 %prep
 %setup -qn %{name}-py-%{version}
 
-for i in  doc/book-multi.txt doc/article.txt COPYRIGHT doc/faq.txt filters/code/code-filter-readme.txt \
-doc/asciidoc.1.txt filters/code/code-filter-test.txt doc/book.txt doc/latex-backend.txt;
+for i in  doc/book-multi.txt doc/article.txt COPYRIGHT doc/faq.txt \
+doc/asciidoc.1.txt doc/book.txt doc/latex-backend.txt;
 do
     dos2unix < $i > $i.fixed ; mv -f $i.fixed $i ;
 done
