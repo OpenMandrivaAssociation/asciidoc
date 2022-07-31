@@ -7,7 +7,8 @@ Group:		Publishing
 Url:		http://asciidoc.org/
 Source0:	https://github.com/asciidoc/asciidoc-py3/archive/%{version}.tar.gz
 #Patch0:		asciidoc-8.6.8-datadir.patch
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(python)
+BuildRequires;  python3dist(pip)
 BuildRequires:	dos2unix
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-dtd43-xml
