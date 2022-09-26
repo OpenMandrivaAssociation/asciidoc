@@ -16,6 +16,7 @@ BuildRequires:	docbook-dtd45-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	xsltproc
 BuildRequires:	pcre
+BuildRequires:	python-pip
 Requires:	python
 
 BuildArch:	noarch
