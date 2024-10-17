@@ -4,7 +4,7 @@ Release:	2
 Summary:	Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 License:	GPLv2+
 Group:		Publishing
-Url:		http://asciidoc.org/
+Url:		https://asciidoc.org/
 Source0:	https://github.com/asciidoc/asciidoc-py3/archive/%{version}.tar.gz
 #Patch0:		asciidoc-8.6.8-datadir.patch
 BuildRequires:	pkgconfig(python3)
