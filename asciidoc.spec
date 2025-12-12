@@ -12,6 +12,7 @@ BuildRequires:	automake
 BuildRequires:	libtool-base
 BuildRequires:	make
 BuildRequires:	pkgconfig(python3)
+BuildRequires:	python%{pyver}dist(setuptools)
 BuildRequires:	dos2unix
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-dtd43-xml
