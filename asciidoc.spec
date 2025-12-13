@@ -13,6 +13,7 @@ BuildRequires:	libtool-base
 BuildRequires:	make
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	python%{pyver}dist(setuptools)
+BuildRequires:	python%{pyver}dist(pip)
 BuildRequires:	dos2unix
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-dtd43-xml
@@ -21,7 +22,6 @@ BuildRequires:	docbook-dtd45-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	xsltproc
 BuildRequires:	pcre
-BuildRequires:	python-pip
 # FIXME Makefile brokenness
 BuildConflicts:	asciidoc
 Requires:	python
@@ -67,6 +67,7 @@ done
 autoreconf -fiv
 %configure
 sed -ri 's/a2x.py -f/a2x.py -v -f/g' Makefile
+sed -i -e 's,pip install,pip install --no-deps,g' Makefile
 %make_build
 
 %install
