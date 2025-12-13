@@ -69,9 +69,10 @@ autoreconf -fiv
 sed -ri 's/a2x.py -f/a2x.py -v -f/g' Makefile
 sed -i -e 's,pip install,pip install --no-deps,g' Makefile
 %make_build
+pip wheel --wheel-dir ../RPMBUILD_wheels --no-deps --no-build-isolation --verbose .
 
 %install
-%make_install
+pip install --root=%{buildroot} --no-deps --verbose --ignore-installed --no-warn-script-location --no-index --no-cache-dir --find-links ../RPMBUILD_wheels ../RPMBUILD_wheels/*.whl
 
 # Make it easier to %exclude these with both rpm < and >= 4.7
 for file in %{buildroot}{%{_bindir},%{_datadir}/asciidoc/filters/*}/*.py ; do
