@@ -7,6 +7,7 @@ Group:		Publishing
 Url:		https://asciidoc.org/
 Source0:	https://github.com/asciidoc/asciidoc-py3/archive/%{version}.tar.gz
 #Patch0:		asciidoc-8.6.8-datadir.patch
+BuildRequires:	slibtool
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool-base
